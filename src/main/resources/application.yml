@@ -1,0 +1,12 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    url: jdbc:postgresql://34.123.53.195:5432/postgres?currentSchema=public
+    username: postgres
+    password: qwerty
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      maximum-pool-size: 10
+      idle-timeout: 60000
+      minimum-idle: 2
