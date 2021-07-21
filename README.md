@@ -18,7 +18,7 @@ validaciones realizadas.
 ### 2.1. Servicio que valida si un humano es mutante en base a su secuencia de ADN
 
     curl -X POST \
-    http://localhost:8081/api/mutant \
+    http://34.123.53.195:8080/api/mutant \
     -H 'Content-Type: application/json' \
     -d '{"dna":["ATGA","TATT","TTAA", "gAAA"] }'
 
@@ -39,7 +39,7 @@ iguales, de forma oblicua, horizontal o vertical.
 
 ### 2.2. Servicio que genera estadisticas de las validaciones de ADN realizadas.
 
-    curl -X GET http://localhost:8081/api/stats 
+    curl -X GET http://34.123.53.195:8080/api/stats 
 
 * #### Códigos de respuesta:
     - 200: Ejecución exitosa, Ejemplo: 

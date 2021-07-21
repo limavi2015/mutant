@@ -1,0 +1,17 @@
+version: '2.1'
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: qwerty
+    ports:
+      - 5432:5432
+    volumes:
+      - ./volumes-data:/var/lib/postgresql/data
+  service:
+    image: limavi2015/ms-mutant
+    ports:
+      - 8080:8081
+    depends_on:
+      db:
+        condition: service_started
