@@ -36,10 +36,41 @@ class MutantApplicationTests {
     public void given_a_mutant_DNA_then_ok_status()  throws Exception {
         mvc.perform( MockMvcRequestBuilders
                 .post("/api/mutant")
-                .content("{\"dna\":[\"AAAA\",\"TATT\",\"TTAA\", \"AAAA\"] }\n")
+                .content("{\"dna\":[\"AAACCC\",\"AAACCC\",\"TTTAAG\", \"ATAACC\", \"AAACCC\", \"AAACCC\"] }\n")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    public void given_a_mutant_DNA_Diagonal_Right_then_ok_status()  throws Exception {
+        mvc.perform( MockMvcRequestBuilders
+                .post("/api/mutant")
+                .content("{\"dna\":[\"AAACCC\",\"AAACCC\",\"TTTAAG\", \"ATAACC\", \"AAACCC\", \"AAACCC\"] }\n")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void given_a_mutant_DNA_Diagonal_Left_then_ok_status()  throws Exception {
+        mvc.perform( MockMvcRequestBuilders
+                .post("/api/mutant")
+                .content("{\"dna\":[\"AAACCC\",\"AAACCC\",\"TCTAAG\", \"ATCACC\", \"AAACCC\", \"TATCCC\"] }\n")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
+
+    @Test
+    public void given_a_invalid_DNA_then_badrequest_status()  throws Exception {
+        mvc.perform( MockMvcRequestBuilders
+                .post("/api/mutant")
+                .content("{\"dna\":[\"AJAA\",\"TATT\",\"TTAA\", \"AAAA\"] }\n")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
     }
 
     @Test

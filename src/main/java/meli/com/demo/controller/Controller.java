@@ -21,15 +21,11 @@ public class Controller {
     @RequestMapping(path = "/mutant", method = RequestMethod.POST)
     public ResponseEntity<String> validateIsMutant(@RequestBody DNA dnaDataDTO) {
         if (mutantService.isValidDna(dnaDataDTO)) {
-            try {
-                boolean isMutant = mutantService.isMutant(dnaDataDTO);
-                if (isMutant)
-                    return ResponseEntity.ok("It is a mutant!!");
-                else
-                    return ResponseEntity.status(HttpStatus.FORBIDDEN).body("It is a human.");
-            } catch (Exception e) {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
-            }
+            boolean isMutant = mutantService.isMutant(dnaDataDTO);
+            if (isMutant)
+                return ResponseEntity.ok("It is a mutant!!");
+            else
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).body("It is a human.");
         } else {
             return ResponseEntity.badRequest().body("The DNA data is invalid.");
         }
